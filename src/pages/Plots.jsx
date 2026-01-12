@@ -1,19 +1,7 @@
 import PlotCard from "../components/PlotCard";
+import { loadPlots } from "../utils/loadPlots";
 
-const plotFiles = import.meta.glob("../../content/plots/*.md", {
-  eager: true,
-});
-
-const plots = Object.values(plotFiles).map((file) => {
-  const { attributes } = file;
-  return {
-    title: attributes.title,
-    location: attributes.location,
-    price: attributes.price.toLocaleString(),
-    image: attributes.image,
-    slug: attributes.title.toLowerCase().replace(/\s+/g, "-"),
-  };
-});
+const plots = loadPlots();
 
 export default function Plots() {
   return (
@@ -23,8 +11,8 @@ export default function Plots() {
       </h2>
 
       <div className="row g-4">
-        {plots.map((plot, index) => (
-          <div className="col-md-4" key={index}>
+        {plots.map((plot) => (
+          <div className="col-md-4" key={plot.slug}>
             <PlotCard plot={plot} />
           </div>
         ))}

@@ -11,15 +11,13 @@ export default function PlotCard({ plot }) {
       />
 
       <div className="card-body d-flex flex-column">
-        <h5 className="card-title fw-bold" style={{ color: "#243C8F" }}>
+        <h5 className="fw-bold" style={{ color: "#243C8F" }}>
           {plot.title}
         </h5>
 
-        <p className="card-text small text-muted mb-2">
-          📍 {plot.location}
-        </p>
+        <p className="small text-muted">📍 {plot.location}</p>
 
-        <p className="fw-bold text-success mb-3">
+        <p className="fw-bold text-success">
           KES {plot.price}
         </p>
 
