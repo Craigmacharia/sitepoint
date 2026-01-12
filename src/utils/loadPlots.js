@@ -1,18 +1,15 @@
-import matter from "gray-matter";
-
-const plotFiles = import.meta.glob("/content/plots/*.md", {
+const plotFiles = import.meta.glob("/public/content/plots/*.json", {
   eager: true,
-  as: "raw",
 });
 
 export function loadPlots() {
-  return Object.entries(plotFiles).map(([path, content]) => {
-    const { data, content: body } = matter(content);
+  return Object.entries(plotFiles).map(([path, module]) => {
+    const data = module.default;
 
     const slug = path
       .split("/")
       .pop()
-      .replace(".md", "");
+      .replace(".json", "");
 
     return {
       slug,
@@ -20,7 +17,7 @@ export function loadPlots() {
       location: data.location,
       price: data.price.toLocaleString(),
       image: data.image,
-      description: body,
+      description: data.description,
     };
   });
 }

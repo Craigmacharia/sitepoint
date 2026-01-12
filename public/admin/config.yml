@@ -7,13 +7,14 @@ public_folder: "/uploads"
 
 collections:
   - name: "plots"
-    label: "Land Plots"
-    folder: "content/plots"
+    label: "Plots"
+    folder: "public/content/plots"
     create: true
-    slug: "{{slug}}"
+    format: "json"
+    extension: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Location", name: "location", widget: "string" }
-      - { label: "Price (KES)", name: "price", widget: "number" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
