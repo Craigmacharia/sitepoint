@@ -12,8 +12,10 @@ collections:
     create: true
     format: "json"
     extension: "json"
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g. kitengela-50x100)" }
       - { label: "Location", name: "location", widget: "string" }
       - { label: "Price", name: "price", widget: "number" }
       - { label: "Image", name: "image", widget: "image" }
