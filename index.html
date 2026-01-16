@@ -4,10 +4,172 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sitepoint</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Site Point Properties | Genuine Land Plots in Kenya</title>
+    <meta name="description" content="Site Point Properties Limited offers genuine, affordable land with ready title deeds in strategic locations across Kenya. Invest with confidence.">
+    <meta name="keywords" content="land for sale Kenya, plots Nairobi, affordable land, ready title deeds, real estate Kenya">
+    <meta name="author" content="Site Point Properties Limited">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Site Point Properties | Genuine Land Plots in Kenya">
+    <meta property="og:description" content="Genuine, affordable land with ready title deeds in strategic locations across Kenya.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sitepointproperties.co.ke">
+    <!-- Add og:image tag with your logo/image -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Site Point Properties">
+    <meta name="twitter:description" content="Genuine land plots with ready title deeds in Kenya">
+    
+    <!-- Preconnect for Google Fonts and external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Comfortaa Font with font-display swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/stpt.jpg" as="image" type="image/jpeg">
+    
+    <!-- Manifest for PWA (optional) -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#243C8F">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Site Point Properties Limited",
+      "description": "Genuine, affordable land with ready title deeds in strategic locations across Kenya",
+      "url": "https://sitepointproperties.co.ke",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressCountry": "Kenya"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+2547XX-XXX-XXX",
+        "contactType": "Customer Service"
+      },
+      "sameAs": [
+        "https://facebook.com/sitepointproperties",
+        "https://twitter.com/sitepointprops"
+      ]
+    }
+    </script>
+    
+    <!-- CSS Critical Path (inline minimal styles for above-the-fold content) -->
+    <style>
+      /* Critical CSS for initial load */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Font loading optimization */
+      .fonts-loaded body {
+        font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      }
+      
+      /* Loading state */
+      .app-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #243C8F 0%, #1AA6A6 100%);
+      }
+      
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <!-- Loading fallback -->
+    <div class="app-loading" id="loading">
+      <div class="loader"></div>
+    </div>
+    
+    <!-- Main app container -->
     <div id="root"></div>
+    
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Font loading optimization script -->
+    <script>
+      // Font loading optimization
+      (function() {
+        // Hide loading when app mounts
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+          }, 500);
+        });
+        
+        // Font loading with fallback
+        if ('fonts' in document) {
+          document.fonts.load('1em Comfortaa').then(function() {
+            document.documentElement.classList.add('fonts-loaded');
+          }).catch(function() {
+            console.log('Comfortaa font failed to load, using fallback');
+          });
+        } else {
+          // Fallback for older browsers
+          setTimeout(function() {
+            document.documentElement.classList.add('fonts-loaded');
+          }, 1000);
+        }
+        
+        // Service Worker registration for PWA (optional)
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').catch(function(err) {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+          });
+        }
+      })();
+    </script>
+    
+    <!-- Analytics (optional - add your tracking code) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GA_ID');
+    </script>
+    -->
   </body>
 </html>
